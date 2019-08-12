@@ -2,12 +2,10 @@ import psutil
 import datetime
 import time
 from pandas import DataFrame
+import pandas as pd
 import csv
 import os
 import matplotlib.pyplot as plt
-'''
-Data collection module
-'''
 
 
 class dataColl:
@@ -50,18 +48,28 @@ class dataColl:
         return [str(x) for x in self.fin_list]
 
     def mainRun(self):
-        # while True:
-        for i in range(2):
+        i = 1
+        while True:
+        # for i in range(2):
             # Fields collected
             data_list = self.data_collect()
             print('[INFO] Done for iteration {}'.format(i))
             self.data_file.write(','.join(data_list) + '\n')
-            time.sleep(1)  # 3600 for an hour
+            self.data_file.flush()
+            time.sleep(1800)  # 3600 for an hour
+            i+=1
+
+class analyse:
+    def __init__(self):
+        self.data = pd.read_csv('data/data.csv')
+
+    def fill_missing(self):
+        print(self.data)
 
 
-instance = dataColl()
-instance.mainRun()
-instance.data_file.close()
-'''
-Data Clearning module for training. Runs every
-'''
+# instance = dataColl()
+# instance.mainRun()
+# instance.data_file.close()
+
+instance = analyse()
+instance.fill_missing()

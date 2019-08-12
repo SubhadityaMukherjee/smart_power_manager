@@ -1,0 +1,4 @@
+# To DO
+
+- Add function to calulate gaps in time and set that part of the table to 0
+
